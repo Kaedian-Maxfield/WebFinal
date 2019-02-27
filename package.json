@@ -1,0 +1,25 @@
+{
+  "name": "webfinal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaedian-Maxfield/WebFinal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kaedian-Maxfield/WebFinal/issues"
+  },
+  "homepage": "https://github.com/Kaedian-Maxfield/WebFinal#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.16",
+    "pug": "^2.0.3"
+  }
+}
