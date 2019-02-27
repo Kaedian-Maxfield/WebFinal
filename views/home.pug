@@ -1,4 +1,12 @@
 extends layout
 
 block content
-    p Home page!
+    - for(let i=0; i<3; i++)
+        div(id="MessageBox")
+            p This is the message Box. Believe it or not...
+    form(method='POST')
+        div.form-group
+            label(for='message')
+            input#message.form-control(type='text', placeholder='Enter Message')
+        button.btn.btn-primary(type='submit') Send
+    
