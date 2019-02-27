@@ -1,4 +1,19 @@
 extends layout
 
 block content
-    p Create page!
+    p Create Account
+    h1 Enter your information. All boxes are required to be filled in to create an account.
+    form(id='form', method='post', action='/create')
+        label UserName:
+        input(type='text', name='username')
+        br
+        label Email:
+        input(type='text', name='email')
+        br
+        label Password:
+        input(type='text', name='password')
+        br
+        label Age:
+        input(type='text', name='age')
+        br
+        input(type='submit', value='Create Account')
