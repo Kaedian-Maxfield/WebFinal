@@ -3,3 +3,9 @@ exports.index = function(req, res){
         "title":'Home',
     });
 }
+
+exports.create = function(req,res){
+    res.render('create', {
+        title: 'Create Account'
+    });
+}

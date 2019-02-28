@@ -11,4 +11,6 @@ app.use(express.static(path.join(__dirname+'/public')));
 
 app.get('/', route.index);
 
+app.get('/create', route.create);
+
 app.listen(3000);
