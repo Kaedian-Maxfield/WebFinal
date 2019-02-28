@@ -2,8 +2,16 @@ extends layout
 
 block content
     - for(let i=0; i<3; i++)
-        div(id="MessageBox")
-            p This is the message Box. Believe it or not...
+        div(class="messageBox")
+            img(src='https://api.adorable.io/avatars/50/abott@adorable.png')
+            div(class="messageBoxText")
+                p(class="messageHeader") UserNameHere DateHere
+                p This is the message Box. Believe it or not...
+    div(class="messageBox")
+            img(src='https://api.adorable.io/avatars/50/abott@adorable.png')
+            div(class="messageBoxText")
+                p(class="messageHeader") UserNameHere DateHere
+                p This is the message Box. Believe it or not... they can get pretty long here is a long message posted by a user who doesn't know how to be concise with their words aaaaaaaaaaaaaaaaaaaaa
     form(method='POST')
         div.form-group
             label(for='message')
