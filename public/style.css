@@ -19,16 +19,30 @@ body{
     border-radius: 15px;
 }
 .messageBoxText{
-    padding-left: 60px;
+    float: right;
+    width:530px;
 }
-.messageBox img{
+.messageBox .profilePic{
     float:left;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px 20px 10px 20px;
 }
 .messageBox p{
     margin: 0px;
 }
-.messageHeader{
+.username{
     color:#b26e63;
+    float:left;
+}
+.timestamp{
+    color:#b26e63;
+    float:right;
+}
+.messageBody{
+    clear: both;
+    padding-top: 3px;
+    border-top: 1px solid #353830;
 }
 nav{
     color:#b26e63;
