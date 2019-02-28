@@ -1,0 +1,50 @@
+body{
+    background-color: #6e7271;
+}
+.mainBody{
+    color:#232520;
+    background-color:#c0caad;
+    border: 3px solid #464a3f;
+    border-radius: 5px;
+    padding:5px;
+}
+nav{
+    color:#b26e63;
+    display:table;
+    margin: 25px auto;
+}
+nav ul{
+    list-style: none;
+    padding:0px;
+    margin: 0;
+}
+nav ul li{
+    display:inline;
+    margin:0px 5px;
+}
+nav ul li a{
+    padding: 10px 15px;
+    background-color:#9da9a0;
+    text-decoration: none;
+    border: 3px solid #c5c3c6;
+    border-radius: 5px;
+}
+nav ul li a:link{
+    color:#b26e63;
+}
+nav ul li a:visited{
+    color:#b26e63;
+}
+nav ul li a:hover{
+    color:#b26e63;
+}
+nav ul li a:active{
+    color:#b26e63;
+}
+.test{
+    color:#464a3f;
+    color:#9da9a0;
+    color:#b26e63;
+    color:#6e7271;
+    color:#c5c3c6;
+}

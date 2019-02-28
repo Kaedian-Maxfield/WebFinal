@@ -4,5 +4,12 @@ html
         link(href="style.css" rel="stylesheet")
         title #{title}
     body
-        h1 #{title}
-        block content
+        nav
+            ul
+                li
+                    a(href='/') Logo Here
+                li
+                    a(href='/profile') My Profile
+        div(class='mainBody')
+            h1 #{title}
+            block content
