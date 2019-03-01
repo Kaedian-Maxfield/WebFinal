@@ -15,4 +15,41 @@ block content
         label Age:
         input(type='text', name='age')
         br
+        br
+        Label Eyes:
+        select(name ='eyes')
+            option(value='eyes1') Eyes 1
+            option(value='eyes10') Eyes 2
+            option(value='eyes2') Eyes 3
+            option(value='eyes3') Eyes 4
+            option(value='eyes4') Eyes 5
+            option(value='eyes5') Eyes 6
+            option(value='eyes6') Eyes 7
+            option(value='eyes7') Eyes 8 
+            option(value='eyes9') Eyes 9
+        br
+        Label Nose:
+        select(name='nose')
+            option(value='nose2') Nose 1
+            option(value='nose3') Nose 2
+            option(value='nose4') Nose 3
+            option(value='nose5') Nose 4
+            option(value='nose6') Nose 5 
+            option(value='nose7') Nose 6
+            option(value='nose8') Nose 7 
+            option(value='nose9') Nose 8
+        br
+        Label Mouth:
+        select(name='mouth')
+            option(value='mouth1') Mouth 1
+            option(value='mouth10') Mouth 2
+            option(value='mouth11') Mouth 3
+            option(value='mouth3') Mouth 4
+            option(value='mouth5') Mouth 5
+            option(value='mouth6') Mouth 6
+            option(value='mouth7') Mouth 7
+            option(value='mouth9') Mouth 8
+        br  
+        img(src='https://api.adorable.io/avatars/face/' + eyes + '/nose3/' + mouth + '/8e8895')
+        br     
         input(type='submit', value='Create Account')
