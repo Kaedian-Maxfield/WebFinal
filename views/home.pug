@@ -1,16 +1,17 @@
 extends layout
 
 block content
-    - for(let i=0; i<3; i++)
-        div(class="messageBox")
-            div(class="profilePic" style="background-image:url(https://api.adorable.io/avatars/50/abott@adorable.png)")
-            div(class="messageBoxText")
-                p(class="username") UserNameHere 
-                p(class="timestamp") DateHere
-                p(class="messageBody") This is the message Box. Believe it or not...
-    form(method='POST')
-        div.form-group
-            label(for='message')
-            input#message.form-control(type='text', placeholder='Enter Message')
-        button.btn.btn-primary(type='submit') Send
+    div(class="messageDisplay")
+        - for(let i=0; i<messages.length; i++)
+            div(class="messageBox")
+                div(class="profilePic" style="background-image:url(https://api.adorable.io/avatars/50/" + messages[i].username + ".png)")
+                div(class="messageBoxText")
+                    p(class="username") #{messages[i].username}
+                    p(class="timestamp") #{messages[i].timestamp}
+                    p(class="messageBody") #{messages[i].messageContents}
+        form(method='POST')
+            div.form-group
+                label(for='message')
+                input#message.form-control(type='text', placeholder='Enter Message')
+            button.btn.btn-primary(type='submit') Send
     
