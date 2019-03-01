@@ -9,6 +9,10 @@ body{
     border-radius: 5px;
     padding:5px;
 }
+.messageDisplay{
+    margin:0px auto;
+    width:50%;
+}
 .messageBox{
     background-color: #464a3f;
     color: #c5c3c6;
