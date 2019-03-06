@@ -2,6 +2,7 @@ extends layout
 
 block content
     p Enter your information. All boxes are required to be filled in to create an account.
+    script(src='/public/avatarEdit.js')
     form(id='form', method='post', action='/create')
         label UserName:
         input(type='text', name='username')
@@ -49,7 +50,18 @@ block content
             option(value='mouth6') Mouth 6
             option(value='mouth7') Mouth 7
             option(value='mouth9') Mouth 8
-        br  
-        img(src='https://api.adorable.io/avatars/face/' + eyes + '/nose3/' + mouth + '/8e8895')
+        br
+        Label R:
+        input(type='range', min='0', max='255', name='r')
+        br
+        Label G:
+        input(type='range', min='0', max='255', name='g')
+        br
+        Label B:
+        input(type='range', min='0', max='255', name='b')
+        br
+        Label Avatar:
+        br
+        img(src='https://api.adorable.io/avatars/face/eyes5/nose5/mouth7/ffaabb',width=100, height=100)
         br     
         input(type='submit', value='Create Account')
