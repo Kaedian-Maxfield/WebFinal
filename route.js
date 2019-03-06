@@ -16,14 +16,16 @@ exports.index = function(req, res){
         }
     ];
     res.render('home', {
-        "title":'Home',
-        "messages":messages
+        title:'Home',
+        username:req.session.username,
+        messages:messages
     });
 }
 
 exports.create = function(req,res){
     res.render('create', {
-        title: 'Create Account'
+        title: 'Create Account',
+        username:req.session.username
     });
 }
 exports.onCreate = (req, res) =>{
@@ -41,10 +43,43 @@ exports.onCreate = (req, res) =>{
 }
 
 exports.login = (req, res) =>{
-    if(req.session.p && bcrypt.compareSync(req.session.p, pass)){
-        res.send("Welcome, logged in user!");
-     } else {
-        req.session.p = "pass";
-        res.send("Welcome to this page for the first time!");
-     }
+    if(req.session.loggedIn){
+        res.send("Welcome, " + req.session.username);
+    }
+    else{
+        res.render('login',{
+            title: "Login",
+            wasValid: true,
+            username:req.session.username
+        });
+    }
+}
+
+let testPass = bcrypt.hashSync("myPass");
+
+exports.onLogin = (req, res) =>{
+    let tryLogin = {
+        username:req.body.username,
+        pass:req.body.password
+    };
+    //TODO: Make this load the passhash from the database by username
+    let pHash = testPass;
+    if(bcrypt.compareSync(tryLogin.pass, pHash)){
+        req.session.loggedIn = true;
+        req.session.username = tryLogin.username;
+        res.redirect('/');
+    }
+    else{
+        res.render('login',{
+            title: "Login",
+            wasValid:false,
+            username:req.session.username
+        });
+    }
+}
+
+exports.logout = (req, res) =>{
+    req.session.loggedIn = false;
+    req.session.username = "";
+    res.redirect('/');
 }
