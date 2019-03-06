@@ -1,3 +1,5 @@
+let bcrypt = require('bcrypt-nodejs');
+
 exports.index = function(req, res){
     let messages = [
         {username:'Newuser1',
@@ -24,4 +26,25 @@ exports.create = function(req,res){
         title: 'Create Account'
     });
 }
+exports.onCreate = (req, res) =>{
+    let user = {
+        username:req.body.username,
+        email:req.body.email,
+        pHash:bcrypt.hashSync(req.body.password),
+        age:req.body.age,
+        eyes:req.body.eyes,
+        nose:req.body.nose,
+        mouth:req.body.mouth
+    };
+    //From here, make a new account and log the user into it with sessions
+    res.send(user);
+}
 
+exports.login = (req, res) =>{
+    if(req.session.p && bcrypt.compareSync(req.session.p, pass)){
+        res.send("Welcome, logged in user!");
+     } else {
+        req.session.p = "pass";
+        res.send("Welcome to this page for the first time!");
+     }
+}
