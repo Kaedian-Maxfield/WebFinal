@@ -9,9 +9,11 @@ block content
                     p(class="username") #{messages[i].username}
                     p(class="timestamp") #{messages[i].timestamp}
                     p(class="messageBody") #{messages[i].messageContents}
-        form(id="form", method='post', action="/")
-            div.form-group
-                label(for='message')
-                input#message.form-control(type='text', name="message" placeholder='Enter Message')
-            button.btn.btn-primary(type='submit', value="Home") Send
-    
+        if(username != "")
+            p #{username}
+            form(id="form", method='post', action="/")
+                div.form-group
+                    label(for='message')
+                    input#message.form-control(type='text', name="message" placeholder='Enter Message')
+                button.btn.btn-primary(type='submit', value="Home") Send
+        

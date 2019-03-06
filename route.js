@@ -15,8 +15,18 @@ let messages = [
     }
 ];
 
+function isAM(CurrentTime)
+{
+    return (CurrentTime < 12 ? "AM" : "PM")
+}
+function hourConvert(CurrentTime)
+{
+    return (CurrentTime < 13 ? CurrentTime : CurrentTime - 12)
+}
+
+let time = new Date();
+
 exports.index = function(req, res){
-    
     res.render('home', {
         title:'Home',
         username:req.session.username,
@@ -24,11 +34,12 @@ exports.index = function(req, res){
     });
 }
 exports.onIndex = (req, res) =>{
+    time = new Date();
     messages.push(
         {
             username:"User3",
             messageContents:req.body.message,
-            timestamp:"12:00 PM"
+            timestamp: hourConvert(time.getHours()) + ":" + time.getMinutes() + " " + isAM(time.getHours())
         }
     );
     res.redirect("/");
