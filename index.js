@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', route.index);
+app.post("/", route.onIndex);
 
 app.get('/create', route.create);
 app.post('/create', route.onCreate);
