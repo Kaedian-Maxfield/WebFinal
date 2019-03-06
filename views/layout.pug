@@ -8,8 +8,16 @@ html
             ul
                 li
                     a(href='/') Logo Here
-                li
-                    a(href='/profile') My Profile
+                if username != "" && username != null
+                    li
+                        a(href='/profile') Welcome #{username}
+                    li
+                        a(href='/logout') Logout
+                else
+                    li
+                        a(href='/login') Login
+                    li
+                        a(href='/create') Register
         div(class='mainBody')
             h1 #{title}
             block content
