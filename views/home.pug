@@ -9,7 +9,7 @@ block content
                     p(class="username") #{messages[i].username}
                     p(class="timestamp") #{messages[i].timestamp}
                     p(class="messageBody") #{messages[i].messageContents}
-        if(username != "")
+        if username != "" && username != null
             p #{username}
             form(id="form", method='post', action="/")
                 div.form-group

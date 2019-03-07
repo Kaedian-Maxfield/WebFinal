@@ -19,9 +19,31 @@ function isAM(CurrentTime)
 {
     return (CurrentTime < 12 ? "AM" : "PM")
 }
+function minuteConvert(CurrentTime)
+{
+    return (CurrentTime < 10 ? "0" + CurrentTime : CurrentTime)
+}
 function hourConvert(CurrentTime)
 {
     return (CurrentTime < 13 ? CurrentTime : CurrentTime - 12)
+}
+
+function resetMessages()
+{
+    messages = [
+        {username:'Newuser1',
+        messageContents:"Hello, I'm user 1 nice to meet you!",
+        timestamp:"11:20 AM"
+        },
+        {username:'NewUserNumber2',
+            messageContents:"hi, i am a different message",
+            timestamp:"11:25 AM"
+        },
+        {username:'Newuser1',
+        messageContents:"Nice to meet you, NewUserNumber2!",
+        timestamp:"11:26 AM"
+        }
+    ];
 }
 
 let time = new Date();
@@ -37,9 +59,9 @@ exports.onIndex = (req, res) =>{
     time = new Date();
     messages.push(
         {
-            username:"User3",
+            username:req.session.username,
             messageContents:req.body.message,
-            timestamp: hourConvert(time.getHours()) + ":" + time.getMinutes() + " " + isAM(time.getHours())
+            timestamp: hourConvert(time.getHours()) + ":" + minuteConvert(time.getMinutes()) + " " + isAM(time.getHours())
         }
     );
     res.redirect("/");
