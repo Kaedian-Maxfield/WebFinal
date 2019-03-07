@@ -88,3 +88,12 @@ nav ul li a:active{
     color:#6e7271;
     color:#c5c3c6;
 }
+
+.form {
+    margin:20px;
+    padding:20px
+}
+
+.form .nameInput{
+    padding:10px
+}
