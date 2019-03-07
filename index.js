@@ -17,11 +17,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', route.index);
+app.post("/", route.onIndex);
 
 app.get('/create', route.create);
 app.post('/create', route.onCreate);
 
 //app.get('/edit/:id', route.edit);
 
+app.get('/login', route.login);
+app.post('/login', route.onLogin);
+
+app.get('/logout', route.logout);
 
 app.listen(3000);

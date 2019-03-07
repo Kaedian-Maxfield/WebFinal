@@ -28,7 +28,38 @@ var userSchema = mongoose.Schema({
 var User = mongoose.model('User_Collection', userSchema);
 
 exports.index = function(req, res){
-    let messages = [
+    //let messages = [
+let messages = [
+    {username:'Newuser1',
+    messageContents:"Hello, I'm user 1 nice to meet you!",
+    timestamp:"11:20 AM"
+    },
+    {username:'NewUserNumber2',
+        messageContents:"hi, i am a different message",
+        timestamp:"11:25 AM"
+    },
+    {username:'Newuser1',
+    messageContents:"Nice to meet you, NewUserNumber2!",
+    timestamp:"11:26 AM"
+    }
+];
+
+function isAM(CurrentTime)
+{
+    return (CurrentTime < 12 ? "AM" : "PM")
+}
+function minuteConvert(CurrentTime)
+{
+    return (CurrentTime < 10 ? "0" + CurrentTime : CurrentTime)
+}
+function hourConvert(CurrentTime)
+{
+    return (CurrentTime < 13 ? CurrentTime : CurrentTime - 12)
+}
+
+function resetMessages()
+{
+    messages = [
         {username:'Newuser1',
         messageContents:"Hello, I'm user 1 nice to meet you!",
         timestamp:"11:20 AM"
@@ -42,15 +73,33 @@ exports.index = function(req, res){
         timestamp:"11:26 AM"
         }
     ];
+}
+
+let time = new Date();
+
+exports.index = function(req, res){
     res.render('home', {
-        "title":'Home',
-        "messages":messages
+        title:'Home',
+        username:req.session.username,
+        messages:messages
     });
+}
+exports.onIndex = (req, res) =>{
+    time = new Date();
+    messages.push(
+        {
+            username:req.session.username,
+            messageContents:req.body.message,
+            timestamp: hourConvert(time.getHours()) + ":" + minuteConvert(time.getMinutes()) + " " + isAM(time.getHours())
+        }
+    );
+    res.redirect("/");
 }
 
 exports.create = function(req,res){
     res.render('create', {
-        title: 'Create Account'
+        title: 'Create Account',
+        username:req.session.username
     });
 }
 exports.onCreate = (req, res) =>{
@@ -81,10 +130,43 @@ exports.edit = function(req,res){
 }
 
 exports.login = (req, res) =>{
-    if(req.session.p && bcrypt.compareSync(req.session.p, pass)){
-        res.send("Welcome, logged in user!");
-     } else {
-        req.session.p = "pass";
-        res.send("Welcome to this page for the first time!");
-     }
+    if(req.session.loggedIn){
+        res.send("Welcome, " + req.session.username);
+    }
+    else{
+        res.render('login',{
+            title: "Login",
+            wasValid: true,
+            username:req.session.username
+        });
+    }
+}
+
+let testPass = bcrypt.hashSync("myPass");
+
+exports.onLogin = (req, res) =>{
+    let tryLogin = {
+        username:req.body.username,
+        pass:req.body.password
+    };
+    //TODO: Make this load the passhash from the database by username
+    let pHash = testPass;
+    if(bcrypt.compareSync(tryLogin.pass, pHash)){
+        req.session.loggedIn = true;
+        req.session.username = tryLogin.username;
+        res.redirect('/');
+    }
+    else{
+        res.render('login',{
+            title: "Login",
+            wasValid:false,
+            username:req.session.username
+        });
+    }
+}
+
+exports.logout = (req, res) =>{
+    req.session.loggedIn = false;
+    req.session.username = "";
+    res.redirect('/');
 }

@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1 Please Log In!
+    form(id='form', method='post', action='/login')
+        label Username:
+        input(type='text', name='username')
+        br
+        label Password:
+        input(type='password', name='password')
+        br
+        unless wasValid
+            h3 Password Invalid
+        input(type='submit', value='Login')
