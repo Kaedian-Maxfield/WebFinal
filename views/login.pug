@@ -9,6 +9,5 @@ block content
         label Password:
         input(type='password', name='password')
         br
-        unless wasValid
-            h3 Password Invalid
+        h3 #{errorMessage}
         input(type='submit', value='Login')
