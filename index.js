@@ -21,5 +21,7 @@ app.get('/', route.index);
 app.get('/create', route.create);
 app.post('/create', route.onCreate);
 
+//app.get('/edit/:id', route.edit);
+
 
 app.listen(3000);

@@ -1,5 +1,32 @@
 let bcrypt = require('bcrypt-nodejs');
 
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/data', {
+    useNewUrlParser: true
+})
+
+var mdb = mongoose.connection;
+mdb.on('error', console.error.bind(console, 'connection error'));
+mdb.once('open', function(callback){
+
+});
+
+var userSchema = mongoose.Schema({
+    username: String,
+    email: String,
+    password: String,
+    age: String,
+    eyes: String,
+    nose: String,
+    mouth: String,
+    r: String,
+    g: String,
+    b: String
+});
+
+var User = mongoose.model('User_Collection', userSchema);
+
 exports.index = function(req, res){
     let messages = [
         {username:'Newuser1',
@@ -34,10 +61,23 @@ exports.onCreate = (req, res) =>{
         age:req.body.age,
         eyes:req.body.eyes,
         nose:req.body.nose,
-        mouth:req.body.mouth
+        mouth:req.body.mouth,
+        r:req.body.r,
+        g:req.body.g,
+        b:req.body.b
     };
     //From here, make a new account and log the user into it with sessions
     res.send(user);
+}
+
+exports.edit = function(req,res){
+    User.findById(req.params.id, function(err, user){
+        if(err) return console.error(err);
+        res.render('edit', {
+            title: 'Edit Person',
+            user: user
+        })
+    })
 }
 
 exports.login = (req, res) =>{
