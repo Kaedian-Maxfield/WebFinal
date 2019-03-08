@@ -31,7 +31,6 @@ var messageSchema = mongoose.Schema({
 });
 
 var User = mongoose.model('User_Collection', userSchema);
-<<<<<<< HEAD
 
 // exports.index = function(req, res){
 //     //let messages = [
@@ -49,9 +48,7 @@ let messages = [
     timestamp:"11:26 AM"
     }
 ];
-=======
 var Message = mongoose.model('Message_Collection', messageSchema);
->>>>>>> f10de4f6ccba7cbfd9ce9240211f76f8c9302cd2
 
 function isAM(CurrentTime)
 {
