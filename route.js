@@ -27,8 +27,8 @@ var userSchema = mongoose.Schema({
 
 var User = mongoose.model('User_Collection', userSchema);
 
-exports.index = function(req, res){
-    //let messages = [
+// exports.index = function(req, res){
+//     //let messages = [
 let messages = [
     {username:'Newuser1',
     messageContents:"Hello, I'm user 1 nice to meet you!",
@@ -169,4 +169,4 @@ exports.logout = (req, res) =>{
     req.session.loggedIn = false;
     req.session.username = "";
     res.redirect('/');
-}
+};
