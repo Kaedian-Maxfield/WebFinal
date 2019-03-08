@@ -7,8 +7,6 @@ var bodyParser = require("body-parser");
 
 var app = express();
 
-app.locals.moment = require('moment');
-
 app.set('view engine', 'pug');
 app.set('views', __dirname+'/views');
 app.use(express.static(path.join(__dirname+'/public')));

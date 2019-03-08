@@ -10,9 +10,9 @@ block content
                     p(class="timestamp") #{messages[i].timestamp}
                     p(class="messageBody") #{messages[i].messageContents}
                     if messages[i].username == username || username == "Admin"
-                        p(class="deleteButton") Delete
+                        <a class="delete" href="('/delete/'+#{i})">Delete</a>
                         if username != "Admin"
-                            p(class="editButton") Edit
+                            <a class="editMessage" href="('/editMessage/'+#{i})">Edit</a>
         if username != "" && username != null
             p #{username}
             form(id="form", method='post', action="/", autocomplete="off")
@@ -20,4 +20,19 @@ block content
                     label(for='message')
                     input#message.form-control(type='text', name="message" placeholder='Enter Message')
                 button.btn.btn-primary(type='submit', value="Home") Send
-        
+    //- div(class="barGraph")
+    //-             head
+    //-                 <title>HTML5 Bar Graph</title>
+    //-             body
+    //-                 canvas(id="canvasId")
+    //-                 script(src="barGraph.js")
+    //-                 <script>
+    //-                     var cxt = document.getElementById("canvasId").getContext("2d");
+                        
+    //-                     var graph = new BarGraph(ctx);
+    //-                     graph.margin = 2;
+    //-                     graph.width = 450;
+    //-                     graph.height = 150;
+
+    //-                     graph.xAxisLabelArr += [messages[i].username];
+    //-                     graph.update(messages.username = username);
