@@ -24,8 +24,14 @@ var userSchema = mongoose.Schema({
     g: String,
     b: String
 });
+var messageSchema = mongoose.Schema({
+    username: String,
+    messageContents: String,
+    timestamp: String
+});
 
 var User = mongoose.model('User_Collection', userSchema);
+<<<<<<< HEAD
 
 // exports.index = function(req, res){
 //     //let messages = [
@@ -43,6 +49,9 @@ let messages = [
     timestamp:"11:26 AM"
     }
 ];
+=======
+var Message = mongoose.model('Message_Collection', messageSchema);
+>>>>>>> f10de4f6ccba7cbfd9ce9240211f76f8c9302cd2
 
 function isAM(CurrentTime)
 {
@@ -59,41 +68,31 @@ function hourConvert(CurrentTime)
 
 function resetMessages()
 {
-    messages = [
-        {username:'Newuser1',
-        messageContents:"Hello, I'm user 1 nice to meet you!",
-        timestamp:"11:20 AM"
-        },
-        {username:'NewUserNumber2',
-            messageContents:"hi, i am a different message",
-            timestamp:"11:25 AM"
-        },
-        {username:'Newuser1',
-        messageContents:"Nice to meet you, NewUserNumber2!",
-        timestamp:"11:26 AM"
-        }
-    ];
 }
 
 let time = new Date();
 
 exports.index = function(req, res){
-    res.render('home', {
-        title:'Home',
-        username:req.session.username,
-        messages:messages
+    Message.find({}, function(err, messages){
+        if(err)return console.log(err);
+        res.render('home', {
+            title:'Home',
+            username:req.session.username,
+            messages:messages
+        });
     });
 }
 exports.onIndex = (req, res) =>{
     time = new Date();
-    messages.push(
-        {
-            username:req.session.username,
-            messageContents:req.body.message,
-            timestamp: hourConvert(time.getHours()) + ":" + minuteConvert(time.getMinutes()) + " " + isAM(time.getHours())
-        }
-    );
-    res.redirect("/");
+    let mes = new Message({
+        username:req.session.username,
+        messageContents:req.body.message,
+        timestamp: hourConvert(time.getHours()) + ":" + minuteConvert(time.getMinutes()) + " " + isAM(time.getHours())
+    });
+    mes.save(function(err, mes){
+        if(err) return console.log(err);
+        res.redirect("/");
+    })
 }
 
 exports.create = function(req,res){
@@ -103,10 +102,10 @@ exports.create = function(req,res){
     });
 }
 exports.onCreate = (req, res) =>{
-    let user = {
+    let user = new User({
         username:req.body.username,
         email:req.body.email,
-        pHash:bcrypt.hashSync(req.body.password),
+        password:bcrypt.hashSync(req.body.password),
         age:req.body.age,
         eyes:req.body.eyes,
         nose:req.body.nose,
@@ -114,9 +113,14 @@ exports.onCreate = (req, res) =>{
         r:req.body.r,
         g:req.body.g,
         b:req.body.b
-    };
-    //From here, make a new account and log the user into it with sessions
-    res.send(user);
+    });
+    user.save(function (err, newUser) {
+        if (err) return console.error(err);
+        console.log(newUser.username + " saved to collection.");
+        req.session.loggedIn = true;
+        req.session.username = newUser.username;
+        res.redirect('/');
+      });
 }
 
 exports.edit = function(req,res){
@@ -136,7 +140,7 @@ exports.login = (req, res) =>{
     else{
         res.render('login',{
             title: "Login",
-            wasValid: true,
+            errorMessage:"",
             username:req.session.username
         });
     }
@@ -149,20 +153,31 @@ exports.onLogin = (req, res) =>{
         username:req.body.username,
         pass:req.body.password
     };
-    //TODO: Make this load the passhash from the database by username
-    let pHash = testPass;
-    if(bcrypt.compareSync(tryLogin.pass, pHash)){
-        req.session.loggedIn = true;
-        req.session.username = tryLogin.username;
-        res.redirect('/');
-    }
-    else{
+    User.findOne({username:tryLogin.username}, function(err, account){
+        if(err) return console.log(err);
+        if(account != null){
+            let pHash = account.password;
+            if(bcrypt.compareSync(tryLogin.pass, pHash)){
+                req.session.loggedIn = true;
+                req.session.username = tryLogin.username;
+                res.redirect('/');
+            }
+            else{
+                res.render('login',{
+                    title: "Login",
+                    errorMessage:"Invalid Password",
+                    username:req.session.username
+                });
+            }
+        }
+       else{
         res.render('login',{
             title: "Login",
-            wasValid:false,
+            errorMessage:"Account Not Found",
             username:req.session.username
         });
-    }
+       }
+    });
 }
 
 exports.logout = (req, res) =>{
