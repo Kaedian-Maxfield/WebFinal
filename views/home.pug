@@ -9,6 +9,10 @@ block content
                     p(class="username") #{messages[i].username}
                     p(class="timestamp") #{messages[i].timestamp}
                     p(class="messageBody") #{messages[i].messageContents}
+                    if messages[i].username == username || username == "Admin"
+                        p(class="deleteButton") Delete
+                        if username != "Admin"
+                            p(class="editButton") Edit
         if username != "" && username != null
             p #{username}
             form(id="form", method='post', action="/", autocomplete="off")
