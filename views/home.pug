@@ -10,9 +10,9 @@ block content
                     p(class="timestamp") #{messages[i].timestamp}
                     p(class="messageBody") #{messages[i].messageContents}
                     if messages[i].username == username || username == "Admin"
-                        <a class="delete" href="/delete/#{i}">Delete</a>
                         if username != "Admin"
                             <a class="editMessage" href="/editMessage/#{i}">Edit</a>
+                        <a class="delete" href="/delete/#{i}">Delete</a>
         if username != "" && username != null
             p #{username}
             form(id="form", method='post', action="/", autocomplete="off")
