@@ -91,9 +91,45 @@ nav ul li a:active{
 
 .form {
     margin:20px;
-    padding:20px
+    padding:20px;
+    font-size: 30px;
+    
 }
 
 .form .nameInput{
-    padding:10px
+    margin: 0px 0px 12px 43px;
+    padding:5px;
+    width: 220px;
+}
+.form .emailInput{
+    margin: 0px 0px 12px 100px;
+    padding:5px;
+    width: 220px;
+}
+.form .passInput{
+    margin: 0px 0px 12px 56px;
+    padding:5px;
+    width: 220px;
+}
+.form .ageInput{
+    margin: 0px 0px 12px 120px;
+    padding:5px;
+    width: 220px;
+}
+
+.form .eye{
+    margin: 0px 0px 0px 35px;
+    width:100px;
+}
+.form .mouth{
+    margin: 0px 0px 0px 30px;
+    width:100px;
+}
+.form .nose{
+    margin: 0px 0px 0px 30px;
+    width:100px;
+}
+
+.form .red{
+    background: #353830
 }

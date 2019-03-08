@@ -31,6 +31,7 @@ var messageSchema = mongoose.Schema({
 });
 
 var User = mongoose.model('User_Collection', userSchema);
+
 var Message = mongoose.model('Message_Collection', messageSchema);
 
 function isAM(CurrentTime)
@@ -164,4 +165,31 @@ exports.logout = (req, res) =>{
     req.session.loggedIn = false;
     req.session.username = "";
     res.redirect('/');
+};
+
+exports.editMessage = (req, res) =>{
+
+}
+
+exports.deleteMessage = (req, res) =>{
+    let id = req.params.id;
+    Message.find({}, function(err, messages){
+        if(err) return console.log(err);
+        let toDelete = messages[id];
+        if(req.session.username !== toDelete.username){
+            //user tried to manually delete message they didn't own
+            res.redirect('/');
+        }
+        else{
+            Message.findOneAndDelete({
+                username:toDelete.username,
+                messageContents:toDelete.messageContents,
+                timestamp:toDelete.timestamp
+            }, function(err, message){
+                if(err) return console.log(err);
+                console.log("Message " + id + " removed!");
+                res.redirect('/');
+            });
+        }
+    });
 }
