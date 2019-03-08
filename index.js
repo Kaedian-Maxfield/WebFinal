@@ -29,4 +29,7 @@ app.post('/login', route.onLogin);
 
 app.get('/logout', route.logout);
 
+app.get('/editMessage/:id', route.editMessage);
+app.get('/delete/:id', route.deleteMessage)
+
 app.listen(3000);
