@@ -14,8 +14,9 @@ html
                     li
                         a(href='/logout') Logout
                 else
-                    li
-                        a(href='/login') Login
+                    if href != './create'
+                        li
+                            a(href='/login') Login
                     li
                         a(href='/create') Register
         div(class='mainBody')

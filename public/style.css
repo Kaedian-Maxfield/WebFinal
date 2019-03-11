@@ -93,7 +93,6 @@ nav ul li a:active{
     margin:20px;
     padding:20px;
     font-size: 30px;
-    
 }
 
 .form .nameInput{
@@ -117,19 +116,98 @@ nav ul li a:active{
     width: 220px;
 }
 
-.form .eye{
-    margin: 0px 0px 0px 35px;
-    width:100px;
-}
-.form .mouth{
-    margin: 0px 0px 0px 30px;
-    width:100px;
-}
-.form .nose{
-    margin: 0px 0px 0px 30px;
-    width:100px;
+.form .select{
+    margin: 0px 10px 0px 35px;
+    padding:5px;
+    width:150px;
+    z-index: 5;
 }
 
 .form .red{
-    background: #353830
+    -webkit-appearance: none;
+    background-image: linear-gradient(to right, white, #ff0000);
+    margin: 15px 10px 0px 35px;
+    z-index: 5;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.form .green{
+    -webkit-appearance: none;
+    background-image: linear-gradient(to right, white, #00ff00);
+    margin: 15px 10px 0px 35px;
+    z-index: 5;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.form .blue{
+    -webkit-appearance: none;
+    background-image: linear-gradient(to right, white, #0000ff);
+    margin: 15px 10px 0px 35px;
+    z-index: 5;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.form .red::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    background: #ff8080;
+    height:25px;
+    width:20px;
+    border-radius: 7.5px;
+    border: 1px solid #fff;
+}
+.form .green::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    background: #80ff80;
+    height:25px;
+    width:20px;
+    border-radius: 7.5px;
+    border: 1px solid #fff;
+}
+.form .blue::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    background: #8080ff;
+    height:25px;
+    width:20px;
+    border-radius: 7.5px;
+    border: 1px solid #fff;
+}
+
+.form .avatar{
+    border-radius: 5px;
+    border-color: #000000;
+    z-index: 1;
+}
+
+.form .back{
+    background: #fff;
+    width: 500px;
+    height: 300px;
+    position: fixed;
+    z-index: 0;
+}
+
+.form .enter{
+    padding: 10px 15px;
+    background-color:#9da9a0;
+    text-decoration: none;
+    border: 3px solid #c5c3c6;
+    border-radius: 5px;
+    margin: 17px 17px 35px 35px;
+    width: 150px;
+}
+
+.form .enter:link{
+    color:#b26e63;
+}
+.form .enter:visited{
+    color:#b26e63;
+}
+.form .enter:hover{
+    color:#b26e63;
+}
+.form .enter:active{
+    color:#b26e63;
 }

@@ -130,6 +130,27 @@ exports.edit = function(req,res){
     })
 }
 
+exports.editPerson = function(req,res){
+    User.findById(req.params.id, function(err, user){
+        if(err) return console.error(err);
+        user.username = req.body.username;
+        user.email = req.body.email;
+        user.password = bcrypt.hashSync(req.body.password);
+        user.age = req.body.age;
+        user.eyes = req.body.eyes;
+        user.nose = req.body.nose;
+        user.mouth = req.body.mouth;
+        user.r = req.body.r;
+        user.g = req.body.g;
+        user.b = req.body.b;
+        user.save(function(err,user){
+            if(err) return console.error(err)
+            console.log(req.body.username + 'updated')
+        });
+    });
+    res.redirect('/');
+}
+
 exports.login = (req, res) =>{
     if(req.session.loggedIn){
         res.send("Welcome, " + req.session.username);

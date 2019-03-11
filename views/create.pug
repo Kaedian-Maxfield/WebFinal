@@ -3,6 +3,7 @@ extends layout
 block content
     p Enter your information. All boxes are required to be filled in to create an account.
     script(src='/public/avatarEdit.js')
+    - var eyes = 'eyes1';
     form(class='form', id='form', method='post', action='/create')
         label UserName:
         input(class='nameInput',type='text', name='username', placeholder='Username')
@@ -17,52 +18,42 @@ block content
         input(class='ageInput',type='text', name='age', placeholder='Age')
         br
         br
-        Label Avatar:
+        img(class='avatar', src='https://api.adorable.io/avatars/face/#{eyes}/#{nose}/mouth2/ffaabb',width=290, height=290, style='float:left')
+        select(class='select',name ='eyes')
+            option(value='eyes1') Straight
+            option(value='eyes10') Tired
+            option(value='eyes2') Squint
+            option(value='eyes3') Lower Circle
+            option(value='eyes4') Higher Circle
+            option(value='eyes5') Content
+            option(value='eyes6') Skeptical
+            option(value='eyes7') Puppy
+            option(value='eyes9') Tilted
         br
-        img(src='https://api.adorable.io/avatars/face/eyes2/nose5/mouth2/ffaabb',width=300, height=300, style='float:left')
+        select(class='select',name='nose')
+            option(value='nose2') Tilted 
+            option(value='nose3') Small
+            option(value='nose4') Pointy
+            option(value='nose5') Round
+            option(value='nose6') Long 
+            option(value='nose7') Square
+            option(value='nose8') High 
+            option(value='nose9') Rectangular
         br
-        Label Eyes:
-        select(class='eye',name ='eyes')
-            option(value='eyes1') Eyes 1
-            option(value='eyes10') Eyes 2
-            option(value='eyes2') Eyes 3
-            option(value='eyes3') Eyes 4
-            option(value='eyes4') Eyes 5
-            option(value='eyes5') Eyes 6
-            option(value='eyes6') Eyes 7
-            option(value='eyes7') Eyes 8 
-            option(value='eyes9') Eyes 9
+        select(class='select',name='mouth')
+            option(value='mouth1') Mmmm...
+            option(value='mouth10') Uhh...
+            option(value='mouth11') Heh
+            option(value='mouth3') Hmm...
+            option(value='mouth5') Ooo
+            option(value='mouth6') Ahh
+            option(value='mouth7') AAAHH
+            option(value='mouth9') Yay
         br
-        Label Nose:
-        select(class='nose',name='nose')
-            option(value='nose2') Nose 1
-            option(value='nose3') Nose 2
-            option(value='nose4') Nose 3
-            option(value='nose5') Nose 4
-            option(value='nose6') Nose 5 
-            option(value='nose7') Nose 6
-            option(value='nose8') Nose 7 
-            option(value='nose9') Nose 8
-        br
-        Label Mouth:
-        select(class='mouth',name='mouth')
-            option(value='mouth1') Mouth 1
-            option(value='mouth10') Mouth 2
-            option(value='mouth11') Mouth 3
-            option(value='mouth3') Mouth 4
-            option(value='mouth5') Mouth 5
-            option(value='mouth6') Mouth 6
-            option(value='mouth7') Mouth 7
-            option(value='mouth9') Mouth 8
-        br
-        Label R:
         input(class='red',type='range', min='0', max='255', name='r')
         br
-        Label G:
         input(class='green',type='range', min='0', max='255', name='g')
         br
-        Label B:
         input(class='blue',type='range', min='0', max='255', name='b')
         br  
-        input(type='submit', value='Create Account')
-    script(src='/public/avatarEdit.js')
+        input(class='enter',type='submit', value='Create Account')
