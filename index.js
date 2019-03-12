@@ -7,8 +7,6 @@ var bodyParser = require("body-parser");
 
 var app = express();
 
-app.locals.moment = require('moment');
-
 app.set('view engine', 'pug');
 app.set('views', __dirname+'/views');
 app.use(express.static(path.join(__dirname+'/public')));
@@ -32,5 +30,8 @@ app.get('/login', route.login);
 app.post('/login', route.onLogin);
 
 app.get('/logout', route.logout);
+
+app.get('/editMessage/:id', route.editMessage);
+app.get('/delete/:id', route.deleteMessage)
 
 app.listen(3000);

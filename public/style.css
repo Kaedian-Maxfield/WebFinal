@@ -22,6 +22,11 @@ body{
     margin: 5px;
     border-radius: 15px;
 }
+.messageBox:after{
+    content: "";
+    display: table;
+    clear: both;
+}
 .messageBoxText{
     float: right;
     width:530px;
@@ -47,6 +52,11 @@ body{
     clear: both;
     padding-top: 3px;
     border-top: 1px solid #353830;
+}
+.editMessage, .delete{
+    margin:5px 15px;
+    color:#cfaaaa;
+    text-decoration: none;
 }
 nav{
     color:#b26e63;
