@@ -9,7 +9,7 @@ block content
                     p(class="username") #{messages[i].username}
                     p(class="timestamp") #{messages[i].timestamp}
                     p(class="messageBody") #{messages[i].messageContents}
-                    if messages[i].username == username || username == "admin"
+                    if messages[i].username == username || username == "Admin"
                         if username == messages[i].username
                             <a class="editMessage" href="/editMessage/#{i}">Edit</a>
                         <a class="delete" href="/delete/#{i}">Delete</a>
