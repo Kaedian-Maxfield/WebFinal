@@ -193,3 +193,26 @@ exports.deleteMessage = (req, res) =>{
         }
     });
 }
+
+exports.setupAdmin = () =>{
+    User.findOne({username:"admin"}, function(err, user){
+        if(err) return console.log(err);
+        if(user === null){
+            let admin = new User({
+                username:"admin",
+                email:"admin@test.com",
+                password:bcrypt.hashSync("pass"),
+                age: 17,
+                eyes:"eyes1",
+                nose:"nose1",
+                mouth:"mouth1",
+                r: "00",
+                g: "00",
+                b: "00"
+            });
+            console.log("Admin account created. u:admin, p:pass");
+            admin.save(function(err, mes){
+                if(err) return console.log(err);
+        });
+    }});
+}
