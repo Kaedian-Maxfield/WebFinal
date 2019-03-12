@@ -20,7 +20,10 @@ block content
                     label(for='message')
                     input#message.form-control(type='text', name="message" placeholder='Enter Message')
                 button.btn.btn-primary(type='submit', value="Home") Send
+    div(id="hidden" style="visibility: none;") #{JSON.stringify(messages)}
     div(id="BarGraph")
         canvas(id="graph")
+    script.
+        var m = document.getElementById("hidden").innerHTML;
     script(src="script.js")
     

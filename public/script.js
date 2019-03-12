@@ -1,5 +1,8 @@
 var ctx = document.getElementById("graph").getContext("2d");
 
+let messages = JSON.parse(m);
+console.log(messages);
+
 var graph = new BarGraph(ctx);
 
 graph.margin = 2;
