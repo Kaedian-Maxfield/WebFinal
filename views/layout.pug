@@ -18,6 +18,9 @@ html
                         a(href='/login') Login
                     li
                         a(href='/create') Register
+                if username == "admin"
+                    li
+                        a(href='/admin') Admin Page
         div(class='mainBody')
             h1 #{title}
             block content
