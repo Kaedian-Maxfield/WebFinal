@@ -32,4 +32,7 @@ app.get('/logout', route.logout);
 app.get('/editMessage/:id', route.editMessage);
 app.get('/delete/:id', route.deleteMessage)
 
+app.get('/admin', route.adminPage);
+app.get('/deleteUser/:username', route.deleteUser);
+
 app.listen(3000);

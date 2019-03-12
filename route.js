@@ -56,10 +56,18 @@ let time = new Date();
 exports.index = function(req, res){
     Message.find({}, function(err, messages){
         if(err)return console.log(err);
-        res.render('home', {
-            title:'Home',
-            username:req.session.username,
-            messages:messages
+        User.find({}, function(err, users){
+            if(err)return console.log(err);
+            let icons = {};
+            for(let j = 0; j < users.length; j++){
+                icons[users[j].username] = getIconURL(users[j], 50);
+            }
+            res.render('home', {
+                title:'Home',
+                username:req.session.username,
+                messages:messages,
+                icons:icons
+            });
         });
     });
 }
@@ -176,7 +184,7 @@ exports.deleteMessage = (req, res) =>{
     Message.find({}, function(err, messages){
         if(err) return console.log(err);
         let toDelete = messages[id];
-        if(req.session.username !== toDelete.username){
+        if(req.session.username !== toDelete.username && req.session.username !== "admin"){
             //user tried to manually delete message they didn't own
             res.redirect('/');
         }
@@ -191,6 +199,33 @@ exports.deleteMessage = (req, res) =>{
                 res.redirect('/');
             });
         }
+    });
+}
+
+exports.adminPage = (req, res) =>{
+    if(req.session.username != "admin") res.redirect('/');
+    User.find({}, function(err, users){
+        if(err) return console.log(err);
+        let avatars = [];
+        for(let j = 0; j < users.length; j++){
+            avatars.push(getIconURL(users[j], 150));
+        }
+        res.render('admin', {
+           title:"Admin Page",
+           users:users,
+           avatars:avatars
+        });
+    });
+}
+
+exports.deleteUser = (req, res) =>{
+    if(req.session.username != "admin") res.redirect('/');
+    User.findOneAndRemove({username:req.params.username}, function(err, user){
+        if(err) return console.log(err);
+        Message.remove({username:req.params.username}, function(err, messages){
+            if(err) return console.log(err);
+            res.redirect('/admin');
+        });
     });
 }
 
@@ -215,4 +250,24 @@ exports.setupAdmin = () =>{
                 if(err) return console.log(err);
         });
     }});
+}
+
+getIconURL = (user, size) =>{
+    let output = "https://api.adorable.io/avatars/face/";
+    output += user.eyes;
+    output += "/";
+    output += user.nose;
+    output += "/";
+    output += user.mouth;
+    output += "/";
+    let r = parseInt(user.r/16).toString(16);
+    let g = parseInt(user.g/16).toString(16);
+    let b = parseInt(user.b/16).toString(16);
+    output += r;
+    output += g;
+    output += b;
+    output += "/";
+    output += size;
+    console.log(output);
+    return output;
 }

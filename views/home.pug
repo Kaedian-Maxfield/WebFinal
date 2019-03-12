@@ -4,7 +4,7 @@ block content
     div(class="messageDisplay")
         - for(let i=0; i<messages.length; i++)
             div(class="messageBox")
-                div(class="profilePic" style="background-image:url(https://api.adorable.io/avatars/50/" + messages[i].username + ".png)")
+                div(class="profilePic" style="background-image:url(" + icons[messages[i].username] + ")")
                 div(class="messageBoxText")
                     p(class="username") #{messages[i].username}
                     p(class="timestamp") #{messages[i].timestamp}
