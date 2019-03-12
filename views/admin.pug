@@ -1,4 +1,9 @@
 extends layout
 
 block content
-    p Admin page!
+    p Welcome Admin. Here are all of the registered users.
+    - for(let i=0; i<users.length; i++)
+        if(users[i].username != "admin")
+            h2 #{users[i].username}
+            img(src=avatars[i])
+            a(href='/deleteUser/' + users[i].username) Delete this user

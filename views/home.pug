@@ -4,13 +4,13 @@ block content
     div(class="messageDisplay")
         - for(let i=0; i<messages.length; i++)
             div(class="messageBox")
-                div(class="profilePic" style="background-image:url(https://api.adorable.io/avatars/50/" + messages[i].username + ".png)")
+                div(class="profilePic" style="background-image:url(" + icons[messages[i].username] + ")")
                 div(class="messageBoxText")
                     p(class="username") #{messages[i].username}
                     p(class="timestamp") #{messages[i].timestamp}
                     p(class="messageBody") #{messages[i].messageContents}
-                    if messages[i].username == username || username == "Admin"
-                        if username != "Admin"
+                    if messages[i].username == username || username == "admin"
+                        if username == messages[i].username
                             <a class="editMessage" href="/editMessage/#{i}">Edit</a>
                         <a class="delete" href="/delete/#{i}">Delete</a>
         if username != "" && username != null
@@ -20,19 +20,18 @@ block content
                     label(for='message')
                     input#message.form-control(type='text', name="message" placeholder='Enter Message')
                 button.btn.btn-primary(type='submit', value="Home") Send
-    //- div(class="barGraph")
-    //-             head
-    //-                 <title>HTML5 Bar Graph</title>
-    //-             body
-    //-                 canvas(id="canvasId")
-    //-                 script(src="barGraph.js")
-    //-                 <script>
-    //-                     var cxt = document.getElementById("canvasId").getContext("2d");
-                        
-    //-                     var graph = new BarGraph(ctx);
-    //-                     graph.margin = 2;
-    //-                     graph.width = 450;
-    //-                     graph.height = 150;
+    //- script(src="script.js")
+    div(class="BarGraph")
+        div(id="graph")
+            <script src="script.js">
+                var cxt = document.getElementById("BarGraph").getContext("2d");
 
-    //-                     graph.xAxisLabelArr += [messages[i].username];
-    //-                     graph.update(messages.username = username);
+                var graph = new BarGraph(ctx);
+
+                graph.margin = 2;
+                graph.width = 450;
+                graph.height = 150;
+                graph.xAxisLabelArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                graph.update([3, 5, 3, 4, 6, 13, 2]) 
+            </script>
+    
