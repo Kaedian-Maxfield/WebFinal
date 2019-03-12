@@ -23,8 +23,8 @@ app.post("/", route.onIndex);
 app.get('/create', route.create);
 app.post('/create', route.onCreate);
 
-app.get('/edit', route.edit);
-app.post('/edit/:id', urlencodedParser, route.editUser);
+app.get('/edit/:id', route.edit);
+app.post('/edit/:id', route.editUser);
 
 app.get('/login', route.login);
 app.post('/login', route.onLogin);

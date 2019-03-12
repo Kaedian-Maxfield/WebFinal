@@ -1,24 +1,25 @@
 extends layout
 
 block content
-    p Enter your information. All boxes are required to be filled in to create an account.
-        //- script(src='/public/avatarEdit.js')
-    form(class='form', id='form', method='post', action='/edit')
+    p Enter your information. All boxes are required to be filled in to edit your account.
+    script(src='avatarEdit.js')
+    form(class='form', id='form', method='post', action='/edit/'+user.id)
         label UserName:
         input(class='nameInput',type='text', name=user.username)
         br
         label Email:
-        input(class='emailInput',type='text', name='email', placeholder='Email')
+        input(class='emailInput',type='text', name=user.email)
         br
         label Password:
-        input(class='passInput',type='text', name='password', placeholder='Password')
+        input(class='passInput',type='text', name=user.password)
         br
         label Age:
-        input(class='ageInput',type='text', name='age', placeholder='Age')
+        input(class='ageInput',type='text', name=user.age)
         br
         br
-        img(class='avatar', src='https://api.adorable.io/avatars/face/eyes2/nose5/mouth2/ffaabb',width=290, height=290, style='float:left')
-        select(class='select',name ='eyes')
+        img(class='avatar', src='https://api.adorable.io/avatars/face/eyes1/nose2/mouth1/7f7f7f', id='avatar',width=290, height=290, style='float:left')
+        select(class='select',name ='eyes', onchange='changeEyes(this.value, nose.value, mouth.value, r.value, g.value, b.value)')
+            option(selected=user.eyes) #{user.eyes}
             option(value='eyes1') Straight
             option(value='eyes10') Tired
             option(value='eyes2') Squint
@@ -29,7 +30,8 @@ block content
             option(value='eyes7') Puppy
             option(value='eyes9') Tilted
         br
-        select(class='select',name='nose')
+        select(class='select',name='nose', onchange='changeEyes(eyes.value, this.value, mouth.value, r.value, g.value, b.value)')
+            option(selected=user.nose) #{user.nose}
             option(value='nose2') Tilted 
             option(value='nose3') Small
             option(value='nose4') Pointy
@@ -39,7 +41,8 @@ block content
             option(value='nose8') High 
             option(value='nose9') Rectangular
         br
-        select(class='select',name='mouth')
+        select(class='select',name='mouth', onchange='changeEyes(eyes.value, nose.value, this.value, r.value, g.value, b.value)')
+            option(selected=user.mouth) #{user.mouth}
             option(value='mouth1') Mmmm...
             option(value='mouth10') Uhh...
             option(value='mouth11') Heh
@@ -49,10 +52,13 @@ block content
             option(value='mouth7') AAAHH
             option(value='mouth9') Yay
         br
-        input(class='red',type='range', min='0', max='255', name='r')
+        input(class='red',type='range', min='0', max='255', name='r', onchange='changeEyes(eyes.value, nose.value, mouth.value, this.value, g.value, b.value)')
+        option(selected=user.r) #{user.r}
         br
-        input(class='green',type='range', min='0', max='255', name='g')
+        input(class='green',type='range', min='0', max='255', name='g', onchange='changeEyes(eyes.value, nose.value, mouth.value, r.value, this.value, b.value)')
+        option(selected=user.g) #{user.g}
         br
-        input(class='blue',type='range', min='0', max='255', name='b')
+        input(class='blue',type='range', min='0', max='255', name='b', onchange='changeEyes(eyes.value, nose.value, mouth.value, r.value, g.value, this.value)')
+        option(selected=user.b) #{user.b}
         br  
         input(class='enter',type='submit', value='Edit Account')
