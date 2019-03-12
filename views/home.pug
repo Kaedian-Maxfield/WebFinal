@@ -20,18 +20,7 @@ block content
                     label(for='message')
                     input#message.form-control(type='text', name="message" placeholder='Enter Message')
                 button.btn.btn-primary(type='submit', value="Home") Send
-    //- script(src="script.js")
-    div(class="BarGraph")
-        div(id="graph")
-            <script src="script.js">
-                var cxt = document.getElementById("BarGraph").getContext("2d");
-
-                var graph = new BarGraph(ctx);
-
-                graph.margin = 2;
-                graph.width = 450;
-                graph.height = 150;
-                graph.xAxisLabelArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-                graph.update([3, 5, 3, 4, 6, 13, 2]) 
-            </script>
+    div(id="BarGraph")
+        canvas(id="graph")
+    script(src="script.js")
     

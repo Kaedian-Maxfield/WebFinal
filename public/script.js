@@ -1,8 +1,13 @@
+var ctx = document.getElementById("graph").getContext("2d");
 
-             
+var graph = new BarGraph(ctx);
 
+graph.margin = 2;
+graph.width = 450;
+graph.height = 150;
+graph.xAxisLabelArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+graph.update([3, 5, 3, 4, 6, 13, 2]);
 function BarGraph(ctx) {
-
     // Private properties and methods
       
     var that = this;
