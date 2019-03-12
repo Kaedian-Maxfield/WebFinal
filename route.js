@@ -113,7 +113,7 @@ exports.onCreate = (req, res) =>{
 }
 
 exports.edit = function(req,res){
-    User.findById(req.params.id, function(err, user){
+    User.findOne({username:req.params.username}, function(err, user){
         if(err) return console.error(err);
         res.render('edit', {
             title: 'Edit User',
@@ -123,7 +123,7 @@ exports.edit = function(req,res){
 }
 
 exports.editUser = function(req,res){
-    User.findById(req.params.id, function(err, user){
+    User.findOne({username:req.params.username}, function(err, user){
         if(err) return console.error(err);
         user.username = req.body.username;
         user.email = req.body.email;

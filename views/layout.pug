@@ -10,7 +10,7 @@ html
                     a(href='/') Logo Here
                 if username != "" && username != null
                     li
-                        a(href='/edit') Welcome #{username}
+                        a(href='/edit/' + username) Welcome #{username}
                     li
                         a(href='/logout') Logout
                 else
