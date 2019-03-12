@@ -124,13 +124,13 @@ exports.edit = function(req,res){
     User.findById(req.params.id, function(err, user){
         if(err) return console.error(err);
         res.render('edit', {
-            title: 'Edit Person',
+            title: 'Edit User',
             user: user
         })
     })
 }
 
-exports.editPerson = function(req,res){
+exports.editUser = function(req,res){
     User.findById(req.params.id, function(err, user){
         if(err) return console.error(err);
         user.username = req.body.username;

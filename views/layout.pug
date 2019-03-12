@@ -10,13 +10,12 @@ html
                     a(href='/') Logo Here
                 if username != "" && username != null
                     li
-                        a(href='/profile') Welcome #{username}
+                        a(href='/edit') Welcome #{username}
                     li
                         a(href='/logout') Logout
                 else
-                    if href != './create'
-                        li
-                            a(href='/login') Login
+                    li
+                        a(href='/login') Login
                     li
                         a(href='/create') Register
         div(class='mainBody')

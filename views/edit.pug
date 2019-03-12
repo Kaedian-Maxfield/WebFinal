@@ -1,11 +1,11 @@
 extends layout
 
 block content
-        p Enter your information. All boxes are required to be filled in to create an account.
-    script(src='/public/avatarEdit.js')
-    form(class='form', id='form', method='post', action='/create')
+    p Enter your information. All boxes are required to be filled in to create an account.
+        //- script(src='/public/avatarEdit.js')
+    form(class='form', id='form', method='post', action='/edit')
         label UserName:
-        input(class='nameInput',type='text', name='username', placeholder='Username')
+        input(class='nameInput',type='text', name=user.username)
         br
         label Email:
         input(class='emailInput',type='text', name='email', placeholder='Email')
